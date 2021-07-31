@@ -1,2 +1,2 @@
-# memory-archives-application
-This is a memory archiving application built with the MERN STACK.
+# movies-gallery-application
+This is a movies gallery application built with the MERN STACK.
