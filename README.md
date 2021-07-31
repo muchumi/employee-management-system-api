@@ -1,2 +1,2 @@
-# employee-management-system-api
-An employee management system built with react for frontend and flask for backend development.
+# memory-archives-application-MERN-STACK
+This is a memory archiving application built with the MERN STACK.
