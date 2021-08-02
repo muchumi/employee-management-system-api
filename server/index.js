@@ -10,7 +10,7 @@ import postRoutes from './routes/posts.js';
 const app = express();
 
 // Using express to connect our post routes to application
-// First parameter specifies the path for all our post routes
+// First parameter specifies the path for all our movie routes
 app.use('/posts', postRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
