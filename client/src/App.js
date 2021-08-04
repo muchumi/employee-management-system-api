@@ -3,15 +3,17 @@ import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import Movies from './components/Movies/Movies.js';
 import Form from './components/Forms/Form.js';
 import movies from './images/movies.png';
+import useStyles from './styles.js'
 
 
 const App = () => {
+    const classes = useStyles();
     return(
         <Container max-width="lg">
-            <AppBar position="static" color="inherit">
+            <AppBar className={classes.appBar} position="static" color="inherit">
                 {/* All out html elemnts go in here */}
-                <Typography variant="h2" align="center">Movies Gallery</Typography>
-                <img src={movies} alt="movies" height="50"/>
+                <Typography className={classes.heading} variant="h2" align="center">Movies Gallery</Typography>
+                <img className={classes.image} src={movies} alt="movies" height="50"/>
             </AppBar>
             {/* Grow facilitates animation on our app */}
             <Grow in>

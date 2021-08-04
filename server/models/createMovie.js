@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Creating a mongoose schema
-// Each post item will have the following listed properties
+// Each movie item will have the following listed properties
 const createMoviesSchema = mongoose.Schema({
     title: String,
     description: String,
