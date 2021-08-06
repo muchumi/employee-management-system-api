@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+// import an action
+import { getMovies } from './actions/movies.js';
 import Movies from './components/Movies/Movies.js';
 import Form from './components/Forms/Form.js';
 import movies from './images/movies.png';
@@ -8,6 +11,12 @@ import useStyles from './styles.js'
 
 const App = () => {
     const classes = useStyles();
+    // Hook
+    // useDispatch helps in dispatching an action
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getMovies());
+    }, [dispatch]);
     return(
         <Container max-width="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">

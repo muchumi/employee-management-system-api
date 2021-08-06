@@ -12,6 +12,8 @@ import App from './App.js';
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 ReactDom.render(
+    // Provider keeps track of the global store
+    // Also enables us to access that store from anywhere in the application
     <Provider store={ store }>
         <App />
     </Provider>, 

@@ -9,13 +9,13 @@ import movieRoutes from './routes/movies.js';
 // Initializing our express application
 const app = express();
 
-// Using express to connect our post routes to application
-// First parameter specifies the path for all our movie routes
-app.use('/movies', movieRoutes);
-
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+// Using express to connect our post routes to application
+// First parameter specifies the path for all our movie routes
+app.use('/movies', movieRoutes);
 
 // Connecting our server with a database
 // https://www.mongodb.com/cloud/atlas
