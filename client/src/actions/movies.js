@@ -10,3 +10,13 @@ export const getMovies = () => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const createMovie = (post) => async (dispatch) => {
+    try{
+        // Data below is response
+        const { data } = await api.createMovie(post);
+        dispatch({type: 'CREATE', payload: data});
+    }catch(error){
+        console.log(error.message);
+    }
+}
