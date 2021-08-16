@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 // Creating a mongoose schema
 // Each movie item will have the following listed properties
 const createMoviesSchema = mongoose.Schema({
+    creator: String,
     title: String,
     description: String,
-    creator: String,
     tags: [String],
     selectedFile: String,
     likeCount: {

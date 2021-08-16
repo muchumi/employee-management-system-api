@@ -15,13 +15,13 @@ export const getMovies = async (req, res) => {
     }
 }
 
-// Our post movie route
-export const createMovies = async (req, res) => {
+// Our create movie route
+export const createMovie = async (req, res) => {
     const post = req.body;
-    const newPost = new PostMovie(post);
+    const newMovie = new CreateMovies(post);
     try{
-        await newPost.save();
-        res.status(201).json(newPost);
+        await newMovie.save();
+        res.status(201).json(newMovie);
     }catch(error){
         res.status(409).json({
             message: error.message
