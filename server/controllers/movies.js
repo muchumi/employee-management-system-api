@@ -1,3 +1,4 @@
+import { Mongoose } from "mongoose";
 import CreateMovies from "../models/createMovie.js";
 
 // All handlers for our routes go here
@@ -27,4 +28,14 @@ export const createMovie = async (req, res) => {
             message: error.message
         });
     }
+}
+
+// Edit movie route
+const editMovie = async (req, res) => {
+    const { id: movie_id } = req.params;
+    const post = req.body;
+    if(!Mongoose.Types.ObjectId.isValid(movie_id)) return res.status(404).send('No movie with that id');
+    const editedMovie = await CreateMovies.findByIdandUpdate(movie_id, post, { new: true });
+
+    res.json(editedMovie);
 }

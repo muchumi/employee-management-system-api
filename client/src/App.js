@@ -7,6 +7,7 @@ import Movies from './components/Movies/Movies.js';
 import Form from './components/Forms/Form.js';
 import movies from './images/movies.png';
 import useStyles from './styles.js'
+import './index.css';
 
 
 const App = () => {
