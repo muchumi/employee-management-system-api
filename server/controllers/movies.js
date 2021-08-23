@@ -1,4 +1,4 @@
-import { Mongoose } from "mongoose";
+// import { mongoose } from "mongoose";
 import CreateMovies from "../models/createMovie.js";
 
 // All handlers for our routes go here
@@ -31,7 +31,7 @@ export const createMovie = async (req, res) => {
 }
 
 // Edit movie route
-const editMovie = async (req, res) => {
+export const editMovie = async (req, res) => {
     const { id: movie_id } = req.params;
     const post = req.body;
     if(!Mongoose.Types.ObjectId.isValid(movie_id)) return res.status(404).send('No movie with that id');
