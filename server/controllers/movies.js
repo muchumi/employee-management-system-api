@@ -35,6 +35,7 @@ export const editMovie = async (req, res) => {
     const { id: movie_id } = req.params;
     const post = req.body;
     if(!Mongoose.Types.ObjectId.isValid(movie_id)) return res.status(404).send('No movie with that id');
+    // The { new: true } property ensures that we get the updated version of our movie that is been updated
     const editedMovie = await CreateMovies.findByIdandUpdate(movie_id, post, { new: true });
 
     res.json(editedMovie);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 // import an action
@@ -7,10 +7,11 @@ import Movies from './components/Movies/Movies.js';
 import Form from './components/Forms/Form.js';
 import movies from './images/movies.png';
 import useStyles from './styles.js'
-import './index.css';
+
 
 
 const App = () => {
+    const [currentID, setCurrentID] = useState(null);
     const classes = useStyles();
     // Hook
     // useDispatch helps in dispatching an action

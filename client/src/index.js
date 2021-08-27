@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 import App from './App.js';
+import './index.css';
 
 // Setting up redux
 // Creating our global store
