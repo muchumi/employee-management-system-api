@@ -11,14 +11,16 @@ import useStyles from './styles.js'
 
 
 const App = () => {
-    const [currentID, setCurrentID] = useState(null);
+    const [currentId, setCurrentId] = useState(null);
     const classes = useStyles();
     // Hook
     // useDispatch helps in dispatching an action
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getMovies());
-    }, [dispatch]);
+    }, [currentId, dispatch]);
+
     return(
         <Container max-width="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
@@ -32,10 +34,10 @@ const App = () => {
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                         {/* Taking 12 full width on extra small devices and 7 on small to medium devices */}
                         <Grid item xs={12} sm={7}>
-                            <Movies />
+                            <Movies setCurrentId = { setCurrentId } />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Form />
+                            <Form currentId = { currentId } setCurrentId = { setCurrentId } />
                         </Grid>
                     </Grid>
                 </Container>

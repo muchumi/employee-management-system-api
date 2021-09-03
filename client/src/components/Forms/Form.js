@@ -1,28 +1,42 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TextField, Button , Typography, Paper } from '@material-ui/core'; 
 import FileBase from 'react-file-base64';
 import useStyles from './styles.js';
-import { createMovie } from '../../actions/movies.js';
+import { createMovie, updateMovie } from '../../actions/movies.js';
 
 
-const Form = () => {
+const Form = ( { currentId, setCurrentId } ) => {
     const [movieData, setMovieData] = useState({
         creator: '', title: '', description: '', tags: '', selectedFile: ''
     });
+    const movie = useSelector((state) => currentId ? state.movies.find((movie) => movie.movie_id === currentId) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
+
+    // Using useEffect hook to populate the form with values of a movie data
+    useEffect(() => {
+        if(movie) setMovieData(movie);
+    }, [movie])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createMovie(movieData));
+
+        if(currentId){
+            dispatch(updateMovie(currentId, movieData));
+        } else {
+            dispatch(createMovie(movieData));
+        }
+        clear(); 
     }
     const clear = () => {
-
+        setCurrentId(null);
+        setMovieData({creator: '', title: '', description: '', tags: '', selectedFile: ''});
     }
     return(
         <Paper className={classes.paper}>
             <form autoComplete = "off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">Post A Movie</Typography>
+                <Typography variant="h6">{ currentId ? 'Editing' : 'Post'  } A Movie</Typography>
                 <TextField 
                 name="creator" 
                 variant="outlined" 
