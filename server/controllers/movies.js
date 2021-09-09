@@ -56,5 +56,9 @@ export const deleteMovie = async (req, res) => {
 
 // Like a movie route
 export const likeMovie = async (req, res) => {
-    
+    const { id } = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No movie with that id');
+    const movie = await CreateMovies.findById(id);
+    const likedMovie = await CreateMovies.findByIdAndUpdate(id, { likeCount: movie.likeCount + 1}, { new: true });
+    res.json(likedMovie); 
 }

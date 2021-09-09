@@ -46,3 +46,13 @@ export const deleteMovie = (id) => async (dispatch) => {
     }
 }
 
+// A function that likes a movie
+export const likeMovie = (id) => async(dispatch) => {
+    try {
+        const { data } = await api.likeMovie(id);
+        dispatch({ type: 'UPDATE', payload: data });
+    } catch (error) {
+        console.log(error);   
+    }
+}
+

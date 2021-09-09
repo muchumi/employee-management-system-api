@@ -6,7 +6,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles.js';
 import { useDispatch } from 'react-redux';
-import { deleteMovie } from '../../../actions/movies.js';
+import { deleteMovie, likeMovie } from '../../../actions/movies.js';
 
 
 const Movie = ({ movie, setCurrentId }) => {
@@ -31,12 +31,12 @@ const Movie = ({ movie, setCurrentId }) => {
             </div>
             <Typography className={classes.title} variant="h5" gutterBottom>{movie.title}</Typography>
             <CardContent>
-                <Typography variant="h5" gutterBottom>{movie.description}</Typography>
+                <Typography variant="body2" color="textSecondary" component="p">{movie.description}</Typography>
             </CardContent>
             <CardActions className={classes.CardActions}>
-                <Button size="small" color="primary" onClick={() => {}}>
+                <Button size="small" color="primary" onClick={() => dispatch(likeMovie(movie.movie_id))}>
                     <ThumbUpAltIcon fontSize="small" />
-                    Like
+                    &nbsp; Like &nbsp;
                     {movie.likeCount}
                 </Button>
                 <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(movie.movie_id))}>
