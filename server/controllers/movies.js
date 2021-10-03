@@ -5,7 +5,7 @@ import CreateMovies from "../models/createMovie.js";
 // All handlers for our routes go here
 // All the logic goes in here
 
-// Get movies route
+// Get movies function
 export const getMovies = async (req, res) => {
     try{
         const allMovies = await CreateMovies.find();
@@ -17,7 +17,7 @@ export const getMovies = async (req, res) => {
     }
 }
 
-// Create movie route
+// Create movie function
 export const createMovie = async (req, res) => {
     const post = req.body;
     const newMovie = new CreateMovies(post);
@@ -31,22 +31,22 @@ export const createMovie = async (req, res) => {
     }
 }
 
-// Edit movie route
+// Edit movie function
 export const editMovie = async (req, res) => {
     const { id: movie_id } = req.params;
     const post = req.body;
-    if(!mongoose.Types.ObjectId.isValid(movie_id)) return res.status(404).send('No movie with that id');
+    if(!mongoose.Types.ObjectId.isValid(movie_id)) return res.status(404).send('Resource Not Found');
     // The { new: true } property ensures that we get the updated version of our movie that is been updated
     const editedMovie = await CreateMovies.findByIdandUpdate(movie_id, { ... movie, movie_id }, { new: true });
 
     res.json(editedMovie);
 }
 
-// Delete movie route
+// Delete movie function
 export const deleteMovie = async (req, res) => {
     const { id } = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No movie with that id');
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('Resource Not Found');
 
     await CreateMovies.findByIdAndRemove(id);
 
@@ -54,10 +54,10 @@ export const deleteMovie = async (req, res) => {
 
 }
 
-// Like a movie route
+// Like a movie function
 export const likeMovie = async (req, res) => {
     const { id } = req.params;
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No movie with that id');
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('Resource Not Found');
     const movie = await CreateMovies.findById(id);
     const likedMovie = await CreateMovies.findByIdAndUpdate(id, { likeCount: movie.likeCount + 1}, { new: true });
     res.json(likedMovie); 

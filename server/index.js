@@ -19,6 +19,10 @@ app.use(cors());
 // First parameter specifies the path for all our movie routes
 app.use('/movies', movieRoutes);
 
+app.get('/', (req, res) => {
+    res.send('Hello, Welcome to Movies Gallery API');
+});
+
 // Connecting our server with a database
 // https://www.mongodb.com/cloud/atlas
 // atlas version of mongodb
